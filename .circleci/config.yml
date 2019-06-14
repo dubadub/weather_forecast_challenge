@@ -1,0 +1,92 @@
+version: 2.1
+
+workflows:
+  terraform:
+    jobs:
+      - build-image
+
+      - run-tests:
+          requires:
+            - build-image
+
+      - tf-plan:
+          requires:
+            - run-tests
+
+      - approve-plan:
+          type: approval
+          requires:
+            - tf-plan
+          filters:
+            branches:
+              only: master
+
+      - tf-apply:
+          requires:
+            - approve-plan
+
+executors:
+
+  docker:
+    working_directory: ~/project
+    docker:
+      - image: circleci/buildpack-deps:latest
+
+  tester:
+    working_directory: ~/project
+    docker:
+      - image: registry.alexeydubovskoy.com/weather:$CIRCLE_SHA1
+      - image: circleci/postgres:10
+
+  terraform:
+    working_directory: ~/project/terraform
+    docker:
+      - image: hashicorp/terraform:0.11.13
+
+
+jobs:
+
+  build-image:
+    executor: docker
+    steps:
+      - checkout:
+          path: ~/project
+      - setup_remote_docker:
+          docker_layer_caching: true
+      - attach_workspace:
+          at: ./
+      - run: echo "$TF_VAR_docker_password" | docker login -u $TF_VAR_docker_user --password-stdin registry.alexeydubovskoy.com
+      - run: docker build  --build-arg RAILS_MASTER_KEY=$RAILS_MASTER_KEY -t registry.alexeydubovskoy.com/weather:$CIRCLE_SHA1 .
+      - run: docker push registry.alexeydubovskoy.com/weather:$CIRCLE_SHA1
+
+  run-tests:
+    executor: tester
+    steps:
+      - checkout:
+          path: ~/project
+      - run: bundle exec rake db:schema:load db:migrate
+      - run: bundle exec rspec
+
+
+  tf-plan:
+    executor: terraform
+    steps:
+      - checkout:
+          path: ~/project
+      - run: terraform init -input=false
+      - run: terraform plan -var "weather_image_version=${CIRCLE_SHA1}" -out=./terraform.plan
+
+      - persist_to_workspace:
+          root: ./
+          paths:
+            - terraform.plan
+
+  tf-apply:
+    executor: terraform
+    steps:
+      - checkout:
+          path: ~/project
+      - attach_workspace:
+          at: ./
+      - run: terraform init -input=false
+      - run: terraform apply --auto-approve ./terraform.plan
