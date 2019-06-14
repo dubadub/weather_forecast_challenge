@@ -18,8 +18,8 @@ ActiveRecord::Schema.define(version: 2019_06_14_111734) do
   create_table "cities", force: :cascade do |t|
     t.string "name"
     t.integer "openweathermap_city_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", precision: 6, default: -> { "now()" }, null: false
+    t.datetime "updated_at", precision: 6, default: -> { "now()" }, null: false
   end
 
 end

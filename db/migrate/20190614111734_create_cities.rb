@@ -4,7 +4,7 @@ class CreateCities < ActiveRecord::Migration[6.0]
       t.string :name
       t.integer :openweathermap_city_id
 
-      t.timestamps
+      t.timestamps default: -> { 'CURRENT_TIMESTAMP' }
     end
   end
 end
