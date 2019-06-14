@@ -1,3 +1,8 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
+  resources :cities, only: :index do
+    resource :forecast, only: :show, controller: "city_forecasts"
+  end
+
+  root to: "pages#home"
 end
