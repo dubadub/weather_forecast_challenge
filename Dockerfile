@@ -19,7 +19,7 @@ COPY Gemfile.lock /usr/src/app/
 RUN bundle config --global frozen 1
 RUN bundle install --without development test
 
-COPY package.json yarn.lock .postcssrc.yml .babelrc /usr/src/app/
+COPY package.json yarn.lock postcss.config.js babel.config.js /usr/src/app/
 RUN yarn && yarn cache clean
 
 
