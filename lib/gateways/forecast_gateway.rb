@@ -3,20 +3,21 @@ require "yajl"
 require "uri"
 
 class ForecastGateway
+  include ActiveSupport::Configurable
 
   def self.for_16_days(city)
     uri = URI::HTTP.build(
-      host: "api.openweathermap.org",
-      path: "/data/2.5/forecast/daily",
+      host: config.host,
+      path: config.forecast_path,
       query: {
         id: city.openweathermap_city_id,
         cnt: 16,
-        APPID: Rails.application.credentials.openweathermap_key,
-        units: :metric
+        APPID: config.api_key,
+        units: config.units
       }.to_query
     )
 
-    results =Rails.cache.fetch("openweathermap/#{uri}", expires_in: 1.hour) do
+    results = Rails.cache.fetch("#{config.name}/#{uri}", expires_in: 1.hour) do
       Yajl::Parser.parse(open(uri), symbolize_keys: true)
     end
 
