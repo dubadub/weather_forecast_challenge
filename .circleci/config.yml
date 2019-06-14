@@ -36,7 +36,16 @@ executors:
     working_directory: ~/project
     docker:
       - image: registry.alexeydubovskoy.com/weather:$CIRCLE_SHA1
+        environment:
+          PGHOST: 127.0.0.1
+          PGUSER: circleci-demo-ruby
+          RAILS_ENV: test
       - image: circleci/postgres:10
+        environment:
+          POSTGRES_USER: circleci-demo-ruby
+          POSTGRES_DB: weather_forecast_challenge_test
+          POSTGRES_PASSWORD: ""
+
 
   terraform:
     working_directory: ~/project/terraform
@@ -48,6 +57,7 @@ jobs:
 
   build-image:
     executor: docker
+
     steps:
       - checkout:
           path: ~/project
@@ -62,8 +72,6 @@ jobs:
   run-tests:
     executor: tester
     steps:
-      - checkout:
-          path: ~/project
       - run: bundle exec rake db:schema:load db:migrate
       - run: bundle exec rspec
 
