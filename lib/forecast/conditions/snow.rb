@@ -1,8 +1,7 @@
 module Forecast
   module Conditions
-    class Snow
+    class Snow < Struct.new(:value)
 
-      attr_accessor :value
 
     end
   end

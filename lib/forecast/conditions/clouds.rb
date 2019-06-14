@@ -1,8 +1,6 @@
 module Forecast
   module Conditions
-    class Clouds
-
-      attr_accessor :value
+    class Clouds < Struct.new(:value)
 
     end
   end

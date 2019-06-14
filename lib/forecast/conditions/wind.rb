@@ -1,8 +1,6 @@
 module Forecast
   module Conditions
-    class Wind
-
-      attr_accessor :speed, :deg
+    class Wind < Struct.new(:speed, :degree)
 
     end
   end

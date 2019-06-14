@@ -1,3 +1,27 @@
+= link_to "< Back", root_path
 h1 = @city.name
 
-p = @forecast
+- @forecast_days.each do |day|
+    ul
+        li Date: #{day.date}
+        li Temperature: #{day.temperature}
+        li Pressure: #{day.pressure}
+        li Humidity: #{day.humidity}
+        li Weather: #{day.weather}
+        li Wind: #{day.wind}
+        li Clouds: #{day.clouds}
+        - if day.rain
+            li Rain: #{day.rain}
+        - if day.snow
+            li Snow: #{day.snow}
+
+
+    hr
+
+
+
+
+
+
+
+

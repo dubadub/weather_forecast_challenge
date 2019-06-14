@@ -1,8 +1,6 @@
 module Forecast
   module Conditions
-    class Humidity
-
-      attr_accessor :value
+    class Humidity < Struct.new(:value)
 
     end
   end

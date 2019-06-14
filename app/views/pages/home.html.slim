@@ -1,5 +1,5 @@
-div data-controller="autocomplete" data-autocomplete-url=cities_path
-  input type="text" data-target="autocomplete.input"
-  input type="hidden" data-target="autocomplete.hidden"
+div data-controller="autocomplete" data-autocomplete-min-length="2" data-autocomplete-url=cities_path
+  input type="text" data-target="autocomplete.input" placeholder="search a city"
+  input type="hidden" name="bird_id" data-target="autocomplete.hidden"
 
   ul data-target="autocomplete.results"

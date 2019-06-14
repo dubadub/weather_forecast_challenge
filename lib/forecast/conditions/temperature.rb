@@ -1,8 +1,6 @@
 module Forecast
   module Conditions
-    class Temperature
-
-      attr_accessor :day, :min, :max, :night, :eve, :morn
+    class Temperature < Struct.new(:day, :min, :max, :night, :evening, :morning)
 
     end
   end

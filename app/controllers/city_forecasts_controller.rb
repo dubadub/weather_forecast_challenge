@@ -3,7 +3,7 @@ class CityForecastsController < ApplicationController
   before_action :set_city
 
   def show
-    @forecast = ForecastGateway.for_16_days(@city)
+    @forecast_days = ForecastGateway.for_16_days(@city)
   end
 
   private
