@@ -33,7 +33,7 @@ executors:
       - image: circleci/buildpack-deps:latest
 
   tester:
-    working_directory: ~/project
+    working_directory: /usr/src/app
     docker:
       - image: registry.alexeydubovskoy.com/weather:$CIRCLE_SHA1
         environment:
@@ -72,6 +72,7 @@ jobs:
   run-tests:
     executor: tester
     steps:
+      - run: bundle config --delete without
       - run: bundle exec rake db:schema:load db:migrate
       - run: bundle exec rspec
 
