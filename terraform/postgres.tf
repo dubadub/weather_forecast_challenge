@@ -32,7 +32,7 @@ resource "helm_release" "db" {
 
   set {
     name = "persistence.size"
-    value = "4Gi"
+    value = "1Gi"
   }
 
   set = {
