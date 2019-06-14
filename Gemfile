@@ -31,6 +31,8 @@ group :development, :test do
   gem "rspec-mocks", git: "https://github.com/rspec/rspec-mocks"
   gem "rspec-support", git: "https://github.com/rspec/rspec-support"
   gem "rspec-expectations", git: "https://github.com/rspec/rspec-expectations"
+  gem "webmock"
+  gem "vcr"
 end
 
 group :development do
