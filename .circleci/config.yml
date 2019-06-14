@@ -73,6 +73,7 @@ jobs:
     executor: tester
     steps:
       - run: bundle config --delete without
+      - run: bundle install
       - run: bundle exec rake db:schema:load db:migrate
       - run: bundle exec rspec
 
