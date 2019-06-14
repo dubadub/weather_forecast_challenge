@@ -1,0 +1,4 @@
+- @cities.each_with_index do |c, i|
+    li role="option" data-autocomplete-value=i
+      = link_to c.name, city_forecast_path(c)
+
