@@ -8,7 +8,7 @@ Run `bundle` and then `rails db:migrate`.
 
 Run `bin/rspec`.
 
-## # Import all cities into database from openweathermap.org
+## Import all cities into database from openweathermap.org
 
 Run `rails openweathermap:import_cities`
 
