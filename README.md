@@ -16,6 +16,10 @@ Run `rails openweathermap:import_cities`
 
 Run `rails s`.
 
+## Demo
+
+See demo at [http://weather.alexeydubovskoy.com/](http://weather.alexeydubovskoy.com/)
+
 ## Original Spec
 
 Create a Ruby on Rails app, that given an input of the name of the city, display the 16 day weather forecast using the [http://openweathermap.org/forecast16](http://openweathermap.org/forecast16) API(need to request a free API Key). See this image for inspiration: [http://cloud.addictivetips.com/wp-content/uploads/2011/12/Forecast.png](http://cloud.addictivetips.com/wp-content/uploads/2011/12/Forecast.png)
@@ -25,8 +29,8 @@ Create a Ruby on Rails app, that given an input of the name of the city, display
 - [x] This would show another page with the 16 days forecast and the simplest data like date and average temperature. Then when the user clicks on a specific day widget, brings up another page with the rest of the details like wind direction, precipitation, etc.
 
 - [x] We are looking for at least 1 test (Integration/Components/Unit/Acceptance),
-- [ ] a simple CI (Continuous Integration) server working
-- [ ] a CD (Continuous Deployment) server working (avoid Heroku if you can)
+- [x] a simple CI (Continuous Integration) server working
+- [x] a CD (Continuous Deployment) server working (avoid Heroku if you can)
 
 Note:
 
