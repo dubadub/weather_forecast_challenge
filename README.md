@@ -18,7 +18,7 @@ Run `rails s`.
 
 ## Demo
 
-See demo at [http://weather.alexeydubovskoy.com/](http://weather.alexeydubovskoy.com/)
+See demo at [https://weather.alexeydubovskoy.com](https://weather.alexeydubovskoy.com)
 
 ## Original Spec
 
