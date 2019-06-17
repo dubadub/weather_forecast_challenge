@@ -14,7 +14,7 @@ Run `rails openweathermap:import_cities`
 
 ## Run server
 
-Run `rails s`.
+Run `rails s` and `bin/webpack` in a separate tab.
 
 ## Demo
 
@@ -22,13 +22,13 @@ See live demo at [https://weather.alexeydubovskoy.com](https://weather.alexeydub
 
 ## CI/CD
 
-I used CircleCI workflow for setting up CI/CD and DigitalOcean Kubernetes Service managed by Terraform for base infrastructure  (I'm not sharing that code because it used in my other projects). 
+I used CircleCI workflow for setting up CI/CD and DigitalOcean Kubernetes Service managed by Terraform for base infrastructure  (I'm not sharing that code because it used in my other projects).
 
-In that project I import shared modules and state to access that infrastructure and deploy container with the app and Postgres to Kubernetes, as well as issue certificate with LetsEncrypt. 
+In that project I import shared modules and state to access that infrastructure and deploy container with the app and Postgres to Kubernetes, as well as issue certificate with LetsEncrypt.
 
 See [terraform](https://github.com/dubadub/weather_forecast_challenge/tree/master/terraform) and [CircleCI config](https://github.com/dubadub/weather_forecast_challenge/blob/master/.circleci/config.yml).
 
-Workflow does: 
+Workflow does:
 
   * first it builds an image of the app and pushes it to my own private container registry;
   * then it runs tests against that image;
@@ -45,6 +45,6 @@ Create a Ruby on Rails app, that given an input of the name of the city, display
 - [x] We are looking for at least 1 test (Integration/Components/Unit/Acceptance),
 - [x] a simple CI (Continuous Integration) server working
 - [x] a CD (Continuous Deployment) server working (avoid Heroku if you can)
-- [ ] CSS/Styles are a bonus to have not critical. 
+- [ ] CSS/Styles are a bonus to have not critical.
 - [ ] We are expecting clean code, adhering to the community standards and rails conventions.
 
