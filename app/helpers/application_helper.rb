@@ -1,5 +1,9 @@
 module ApplicationHelper
 
+  def formatted_city_name(city)
+    "#{city.name}, #{city.country}"
+  end
+
   def forecast_summary(days)
     summary = ""
 

@@ -3,7 +3,7 @@
         h2.forecast-header
             a.forecast-header__link> href=root_path Home
             .forecast-header__delimeter> >
-            .forecast-header__city 16 days weather forecast for #{@city.name}
+            .forecast-header__city 16 days weather forecast for #{formatted_city_name(@city)}
 
     p.city-forecast__description
         = forecast_summary(@forecast_days)

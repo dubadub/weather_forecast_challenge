@@ -12,7 +12,9 @@ namespace :openweathermap do
 
     IO.copy_stream(Zlib::GzipReader.new(open(OWM_CITIES_JSON_URL)), file)
 
-    cities = Yajl::Parser.parse(File.new(file), symbolize_keys: true).map! { |c| { name: c[:name], openweathermap_city_id: c[:id] } }
+    cities = Yajl::Parser.parse(File.new(file), symbolize_keys: true).map! do |c|
+      { name: c[:name], openweathermap_city_id: c[:id], country: c[:country] }
+    end
 
     City.insert_all(cities)
   end

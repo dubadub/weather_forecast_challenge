@@ -1,4 +1,4 @@
 - @cities.each_with_index do |c, i|
     a.search-results__item role="option" data-autocomplete-value=i href=city_forecast_path(c)
-      = c.name
+      = formatted_city_name(c)
 
