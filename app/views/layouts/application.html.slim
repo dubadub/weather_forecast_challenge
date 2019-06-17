@@ -1,0 +1,17 @@
+doctype html
+html
+  head
+    title WeatherForecastChallenge
+    = csrf_meta_tags
+    = csp_meta_tag
+
+    = stylesheet_link_tag 'application', media: 'all'
+    = javascript_pack_tag 'application'
+  body.layout
+
+    section.layout__content
+        = yield
+
+    footer.layout__footer © 2019. Using data from #{link_to "openweathermap.org", "http://openweathermap.org"}.
+
+

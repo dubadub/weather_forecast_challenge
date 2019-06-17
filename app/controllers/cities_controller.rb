@@ -1,4 +1,5 @@
 class CitiesController < ApplicationController
+  layout false
 
   def index
     @cities = City.search(query_param).limit(10)

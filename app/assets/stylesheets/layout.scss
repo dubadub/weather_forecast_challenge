@@ -1,0 +1,15 @@
+.layout {
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: 1fr auto;
+    grid-template-columns: 100%;
+
+    background-image: linear-gradient(215.73deg, #212255 0%, #925E7D 101.17%);
+}
+
+.layout__content {}
+
+.layout__footer {
+    margin: 24px auto;
+}
+

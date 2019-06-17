@@ -1,22 +1,30 @@
-= link_to "< Back", root_path
-h1 = @city.name
+.city-forecast
+    .city-forecast__header
+        h2.forecast-header
+            a.forecast-header__link> href=root_path Home
+            .forecast-header__delimeter> >
+            .forecast-header__city 16 days weather forecast for #{@city.name}
 
-- @forecast_days.each do |day|
-    ul
-        li Date: #{day.date}
-        li Temperature: #{day.temperature}
-        li Pressure: #{day.pressure}
-        li Humidity: #{day.humidity}
-        li Weather: #{day.weather}
-        li Wind: #{day.wind}
-        li Clouds: #{day.clouds}
-        - if day.rain
-            li Rain: #{day.rain}
-        - if day.snow
-            li Snow: #{day.snow}
+    p.city-forecast__description
+        = forecast_summary(@forecast_days)
+
+    .city-forecast__results.forecast-results
+        - @forecast_days.each do |day|
+            .forecast-results__item.forecast-day
+                .forecast-day__date #{day.date.strftime("%b %d")}
+                .forecast-day__icon = image_tag("weather_icons/#{day.weather.icon}.png")
+                .forecast-day__temperature
+                    .forecast-day__temperature--high #{day.temperature.max}°
+                    .forecast-day__temperature--low #{day.temperature.min}°
+
+                .forecast-day__summary = day.weather.description.titleize
+
+                .forecast-day__rain #{"Rain" if day.rain}
+                .forecast-day__snow #{"Snow" if day.snow}
+
+                .forecast-day__wind #{day.wind.speed} km/h
 
 
-    hr
 
 
 

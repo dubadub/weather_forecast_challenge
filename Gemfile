@@ -19,6 +19,7 @@ gem "yajl-ruby"
 gem "sass-rails", "~> 5"
 gem "webpacker", "~> 4.0"
 gem "slim"
+gem "normalize-rails"
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", ">= 1.4.2", require: false

@@ -1,3 +1,119 @@
 // Place all the styles related to the city_forecasts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.city-forecast {
+    width: 1446px;
+    padding-left: 50px;
+    padding-right: 50px;
+    margin: 0 auto;
+
+    &__header {
+        height: 25vh;
+        min-height: 200px;
+
+
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__description {
+        margin: 18px 4px 32px;
+        padding: 8px 4px 4px 8px;
+    }
+}
+
+.forecast-header {
+
+    margin-top: auto;
+    margin-bottom: 32px;
+
+    &__link {
+        display: inline-block;
+    }
+
+    &__delimeter {
+        display: inline-block;
+    }
+
+    &__city {
+        display: inline-block;
+    }
+}
+
+
+.forecast-results {
+    display: grid;
+    grid-gap: 14px;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+
+    &__item {
+        width: 100%;
+        padding: 14px 8px 10px;
+        height: 341px;
+
+        background: #F9E5DF;
+        border-radius: 2px;
+    }
+}
+
+
+.forecast-day {
+    &__date {
+        color: #696B74;
+        font-size: 16px;
+        text-align: center;
+    }
+
+    &__icon {
+        color: #696B74;
+        font-size: 12px;
+        text-align: center;
+        margin: 32px 0;
+    }
+
+    &__temperature {
+        text-align: center;
+        margin: 18px 0;
+        font-size: 20px;
+
+        &--high {
+            color: #3B3C41;
+            display: inline-block;
+        }
+
+        &--low {
+            font-size: 16px;
+            color: #A5A6AC;
+            display: inline-block;
+        }
+    }
+
+    &__summary {
+        color: #696B74;
+        font-size: 12px;
+        min-height: 56px;
+    }
+
+    &__rain {
+        color: #A5A6AC;;
+        font-size: 12px;
+        height: 30px;
+        padding-left: 2px;
+    }
+
+    &__snow {
+        color: #A5A6AC;;
+        font-size: 12px;
+        height: 30px;
+        padding-left: 2px;
+    }
+
+    &__wind {
+        color: #696B74;
+        font-size: 12px;
+        padding-left: 2px;
+    }
+}
+
