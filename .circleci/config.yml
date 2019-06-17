@@ -67,7 +67,7 @@ executors:
           POSTGRES_USER: circleci-demo-ruby
           POSTGRES_DB: weather_forecast_challenge_test
           POSTGRES_PASSWORD: ""
-      - image: selenium/node-chrome
+      - image: nbulai/ruby-chromedriver:latest
 
 
   terraform:
