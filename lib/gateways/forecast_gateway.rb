@@ -4,6 +4,9 @@ require "uri"
 
 class ForecastGateway
   include ActiveSupport::Configurable
+  RETRY_TIMES = 3
+
+  class ApiError < StandardError; end
 
   def self.for_16_days(city)
     uri = URI::HTTP.build(
@@ -18,7 +21,15 @@ class ForecastGateway
     )
 
     results = Rails.cache.fetch("#{config.name}/#{uri}", expires_in: 1.hour) do
-      Yajl::Parser.parse(open(uri), symbolize_keys: true)
+      try = 0
+
+      begin
+        Yajl::Parser.parse(open(uri), symbolize_keys: true)
+      rescue SocketError, Timeout::Error, OpenURI::HTTPError => error
+        try = try + 1
+
+        try <= RETRY_TIMES ? retry : raise(ApiError, error.message)
+      end
     end
 
     results[:list].map do |r|
