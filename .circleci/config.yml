@@ -1,5 +1,27 @@
 version: 2.1
 
+
+references:
+    cached_external_api_responses: &cached_external_api_responses
+
+      restore_cache: &cached_external_api_responses_restore_cache
+        restore_cache:
+          name: Restoring VCR api response recordings.
+          keys:
+            - vcr-cassettes-cache-{{ .Branch }}
+
+      run: &cached_external_api_responses_setup
+        run:
+          name: Create VCR cassettes directory to stop external API responses
+          command: |
+            mkdir -p tmp/vcr_cassettes
+
+      save_cache: &cached_external_api_responses_save_cache
+        save_cache:
+          key: vcr-cassettes-cache-{{ .Branch }}-{{ .Revision }}
+          paths:
+            - tmp/vcr-cassettes
+
 workflows:
   terraform:
     jobs:
@@ -75,7 +97,10 @@ jobs:
       - run: bundle config --delete without
       - run: bundle install
       - run: bundle exec rake db:schema:load db:migrate
+      - *cached_external_api_responses_setup
+      - *cached_external_api_responses_restore_cache
       - run: bundle exec rspec
+      - *cached_external_api_responses_save_cache
 
 
   tf-plan:
