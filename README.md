@@ -45,6 +45,6 @@ Create a Ruby on Rails app, that given an input of the name of the city, display
 - [x] We are looking for at least 1 test (Integration/Components/Unit/Acceptance),
 - [x] a simple CI (Continuous Integration) server working
 - [x] a CD (Continuous Deployment) server working (avoid Heroku if you can)
-- [ ] CSS/Styles are a bonus to have not critical.
-- [ ] We are expecting clean code, adhering to the community standards and rails conventions.
+- [x] CSS/Styles are a bonus to have not critical.
+- [x] We are expecting clean code, adhering to the community standards and rails conventions.
 
